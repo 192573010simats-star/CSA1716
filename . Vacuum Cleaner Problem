@@ -1,0 +1,15 @@
+room={'A':'Dirty','B':'Dirty'}
+loc='A'
+
+while True:
+    if room[loc]=='Dirty':
+        print("Suck at",loc)
+        room[loc]='Clean'
+    elif loc=='A':
+        print("Move Right")
+        loc='B'
+    else:
+        break
+
+print(room)
+print("All Rooms Clean")
