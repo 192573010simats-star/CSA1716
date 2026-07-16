@@ -1,0 +1,31 @@
+from collections import deque
+
+moves=[(2,0),(0,2),(1,1),(1,0),(0,1)]
+
+def valid(m,c):
+    return (m==0 or m>=c) and (3-m==0 or 3-m>=3-c)
+
+q=deque([(3,3,1)])
+visited={(3,3,1)}
+
+while q:
+    m,c,b=q.popleft()
+    print((m,c,b))
+
+    if (m,c,b)==(0,0,0):
+        print("Goal Reached")
+        break
+
+    for dm,dc in moves:
+        if b:
+            nm,nc=m-dm,c-dc
+            nb=0
+        else:
+            nm,nc=m+dm,c+dc
+            nb=1
+
+        if 0<=nm<=3 and 0<=nc<=3 and valid(nm,nc):
+            s=(nm,nc,nb)
+            if s not in visited:
+                visited.add(s)
+                q.append(s)
