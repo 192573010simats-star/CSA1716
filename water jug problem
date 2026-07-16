@@ -1,0 +1,30 @@
+from collections import deque
+
+cap1=4
+cap2=3
+goal=2
+
+q=deque([(0,0)])
+visited={(0,0)}
+
+while q:
+    x,y=q.popleft()
+    print((x,y))
+
+    if x==goal or y==goal:
+        print("Goal Reached")
+        break
+
+    states=[
+        (cap1,y),
+        (x,cap2),
+        (0,y),
+        (x,0),
+        (x-min(x,cap2-y), y+min(x,cap2-y)),
+        (x+min(y,cap1-x), y-min(y,cap1-x))
+    ]
+
+    for s in states:
+        if s not in visited:
+            visited.add(s)
+            q.append(s)
